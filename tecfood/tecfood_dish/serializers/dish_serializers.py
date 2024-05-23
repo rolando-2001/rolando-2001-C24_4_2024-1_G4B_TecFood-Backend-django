@@ -4,4 +4,14 @@ from tecfood_dish.models import Dish
 class DishSerializer(serializers.ModelSerializer):
     class Meta:
         model = Dish
-        fields = '__all__'
+        fields = [
+            'dish_id',
+            'name',
+            'price',
+            'stock',
+            'description',
+            'created_at',
+            'updated_at',
+            'dish_category_id',
+            
+        ]

@@ -5,7 +5,8 @@ from tecfood_dish.views import DishViewSet
 
 router = DefaultRouter()
 router.register(r'dish-categories', DishCategoryViewSet)
-router.register(r'dishes', DishViewSet)
+
+router.register(r'dishes', DishViewSet, basename='dish')
 
 urlpatterns = [
     path('', include(router.urls)),

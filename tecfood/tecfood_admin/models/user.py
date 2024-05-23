@@ -11,12 +11,13 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=250)
     dni = models.CharField(max_length=8, unique=True)  
-    img_url = CloudinaryField('image')
+    img_url = CloudinaryField('image',null=True, blank=True)
     is_google_account = models.BooleanField(default=False)
     is_verified_email = models.BooleanField(default=False)
 
     # Foreign key
-    role = models.ForeignKey(Role, on_delete=models.CASCADE, default=5)
+    role = models.ForeignKey(Role, on_delete=models.CASCADE, default=1)
+    
 
     # Django default fields
     is_staff = models.BooleanField(default=False)
@@ -30,3 +31,8 @@ class User(AbstractUser):
     updated_at = models.DateTimeField(auto_now=True)
 
     username = models.CharField(max_length=150, unique=True, null=True, blank=True)
+
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
+
+    
