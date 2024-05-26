@@ -103,14 +103,10 @@ AUTH_USER_MODEL = 'tecfood_admin.User'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ventas2024',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',  # O la dirección IP de tu servidor MySQL
-        'PORT': '3306',  # Puerto por defecto de MySQL
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
+
 }
 
 
@@ -169,6 +165,6 @@ cloudinary.config(
 
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173"
+    "https://cliente-tecfood.onrender.com"
 
 ]
