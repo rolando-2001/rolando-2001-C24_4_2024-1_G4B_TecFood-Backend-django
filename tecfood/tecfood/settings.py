@@ -53,8 +53,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    'corsheaders',
     'rest_framework.authtoken',
     'rest_framework',
+  
 
     'tecfood_cart',
     'tecfood_admin',
@@ -66,6 +68,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -100,10 +103,14 @@ AUTH_USER_MODEL = 'tecfood_admin.User'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config()
-    
-    
-
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ventas2024',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',  # O la dirección IP de tu servidor MySQL
+        'PORT': '3306',  # Puerto por defecto de MySQL
+    }
 }
 
 
@@ -159,3 +166,9 @@ cloudinary.config(
   api_secret = config('api_secret')
     
 )
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173"
+
+]
